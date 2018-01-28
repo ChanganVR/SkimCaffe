@@ -32,7 +32,7 @@ COMPONENT_INCLUDES := $(TOOLS_ROOT)/InstLib
 #APP_LPATHS := $(TOOLS_ROOT)/InstLib
 #TOOL_LIBS +=-lz
 TOOL_LPATH+=/lib/x86_64-linux-gnu/
-TOOL_LPATH+=/p-ssd/nvedula/softwares/zlib-1.2.8-gcc-4.8/lib/
+#TOOL_LPATH+=/p-ssd/nvedula/softwares/zlib-1.2.8-gcc-4.8/lib/
 
 # This defines all the applications that will be run during the tests.
 APP_ROOTS :=controller_manager 
