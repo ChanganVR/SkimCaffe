@@ -22,6 +22,11 @@
 #include "caffe/util/benchmark.hpp"
 #include "caffe/layers/winograd_layer.hpp"
 
+extern "C" {
+#include "../simulator/pin-tool/include/roi.h""
+}
+
+
 namespace caffe {
 
 template <typename Dtype>
@@ -626,6 +631,7 @@ Dtype Net<Dtype>::ForwardFromTo(int start, int end) {
   CHECK_GE(start, 0);
   CHECK_LT(end, layers_.size());
   // ROI_MAKER_BEGIN
+  __app_roi_begin();
   LOG(INFO) << "Start forwarding";
   Dtype loss = 0;
   //Timer timer;
@@ -644,6 +650,7 @@ Dtype Net<Dtype>::ForwardFromTo(int start, int end) {
     loss += layer_loss;
     if (debug_info_) { ForwardDebugInfo(i); }
   }
+  __app_roi_end();
   //ROI_MARKER_END
   LOG(INFO) << "End forwarding";
   //LOG(INFO) << "Total time in this iteration: " << "\t("<<cur_time_total<<" us)";
